@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.chart.PieChart?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
@@ -11,16 +12,20 @@
         <menus>
           <Menu mnemonicParsing="false" text="Contas">
             <items>
+                  <MenuItem mnemonicParsing="false" onAction="#onMenuItemGraphicsAction" text="Graficos" />
               <MenuItem mnemonicParsing="false" onAction="#onMenuItemContaAction" text="Gastos do mes" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Cartão">
             <items>
-              <MenuItem mnemonicParsing="false" text="Total gasto" />
+              <MenuItem mnemonicParsing="false" onAction="#onMenuItemCreditAction" text="Total gasto" />
             </items>
           </Menu>
         </menus>
       </MenuBar>
-      <AnchorPane fx:id="panelGeneral" layoutY="27.0" prefHeight="573.0" prefWidth="1000.0" />
+      <AnchorPane fx:id="panelGeneral" layoutY="27.0" prefHeight="573.0" prefWidth="1000.0">
+         <children>
+            <PieChart fx:id="pieChart" layoutX="14.0" layoutY="87.0" />
+         </children></AnchorPane>
    </children>
 </AnchorPane>

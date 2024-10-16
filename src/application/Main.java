@@ -19,7 +19,7 @@ public class Main extends Application {
     
             mainScene = new Scene(anchorPane);
             primaryStage.setScene(mainScene);
-            primaryStage.setTitle("Menu");
+            primaryStage.setTitle("Controle de Gastos");
             primaryStage.show();
         } catch (IOException e) {
             e.printStackTrace();

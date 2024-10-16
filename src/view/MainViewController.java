@@ -15,16 +15,29 @@ public class MainViewController implements Initializable {
     private AnchorPane panelGeneral;
 
     public void onMenuItemContaAction() {
-        try {
-            Parent panelAccount = FXMLLoader.load(getClass().getResource("/view/ContaView.fxml"));
-            panelGeneral.getChildren().clear();
-            panelGeneral.getChildren().add(panelAccount);
-        } catch (IOException e) {
-        }
+        loadPanel("/view/ContaView.fxml");
     }
 
+    public void onMenuItemCreditAction() {
+        loadPanel("/view/CreditCardView.fxml");
+    }
+    
+    public void onMenuItemGraphicsAction(){
+        loadPanel("/view/GraphicsView.fxml");
+    }
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        loadPanel("/view/GraphicsView.fxml");
+    }
+    
+    private void loadPanel(String path) {
+        try {
+            Parent panelAccount = FXMLLoader.load(getClass().getResource(path));
+            panelGeneral.getChildren().clear();
+            panelGeneral.getChildren().add(panelAccount);
+        } catch (IOException e) {  
+            System.out.println(e.getMessage());
+        }
     }
 }
