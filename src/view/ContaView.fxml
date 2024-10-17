@@ -75,7 +75,6 @@
             <TableColumn fx:id="columnRemo" prefWidth="94.0" />
         </columns>
       </TableView>
-      <Label fx:id="labelRemainder" layoutX="632.0" layoutY="461.0" prefHeight="62.0" prefWidth="315.0" styleClass="border-bar" />
       <Label fx:id="labelIcome" layoutX="632.0" layoutY="374.0" prefHeight="62.0" prefWidth="315.0" styleClass="border-bar" />
       <Label fx:id="labelTotal" layoutX="632.0" layoutY="287.0" prefHeight="62.0" prefWidth="315.0" styleClass="border-bar" />
       <GridPane layoutX="632.0" layoutY="222.0" prefHeight="40.0" prefWidth="315.0">
