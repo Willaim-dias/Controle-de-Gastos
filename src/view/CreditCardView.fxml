@@ -13,10 +13,9 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="574.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.CreditCardViewController">
+<AnchorPane id="AnchorPane" prefHeight="574.0" prefWidth="1000.0" stylesheets="@styles/MainStyle.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.CreditCardViewController">
    <children>
-      <GridPane layoutX="14.0" layoutY="34.0" prefHeight="77.0" prefWidth="500.0">
+      <GridPane layoutX="14.0" layoutY="99.0" prefHeight="77.0" prefWidth="500.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -56,11 +55,16 @@
             </DatePicker>
          </children>
       </GridPane>
-      <TableView layoutX="14.0" layoutY="168.0" prefHeight="390.0" prefWidth="500.0">
+      <TableView layoutX="14.0" layoutY="200.0" prefHeight="358.0" prefWidth="500.0">
         <columns>
           <TableColumn prefWidth="122.0" text="Valor fatura" />
           <TableColumn prefWidth="123.0" text="Data Pagamento" />
         </columns>
       </TableView>
+      <Label alignment="CENTER" layoutY="14.0" prefHeight="53.0" prefWidth="306.0" styleClass="title-back" text="Gastos do Cartão" textFill="WHITE">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

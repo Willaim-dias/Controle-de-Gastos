@@ -2,3 +2,7 @@
 .border-bar {
     -fx-border-color: #000;
 }
+
+.title-back {
+    -fx-background-color: #DAA520;
+}
