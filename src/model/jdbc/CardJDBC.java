@@ -1,31 +1,35 @@
-package model;
+package model.jdbc;
 
 import config.DB;
 import config.DbException;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import model.dao.CardDao;
 import model.entities.Account;
+import model.entities.Card;
 
-public class AccountJDBC {
+public class CardJDBC implements CardDao{
     
     private Connection conn;
     
-    public AccountJDBC() {
-        conn = DB.getConnection();
+    public CardJDBC(Connection conn) {
+        this.conn = conn;
     }
     
-    public void insert(Account obj) {
+    @Override
+    public void insert(Card obj) {
         PreparedStatement st = null;
         try {
-            st = conn.prepareStatement("INSERT INTO Account (account,value) VALUES (?,?)",Statement.RETURN_GENERATED_KEYS);
-            st.setString(0, obj.getAccount());
-            st.setDouble(1, obj.getValue());
-            
+            st = conn.prepareStatement("INSERT INTO Card (value,date) VALUES (?,?)",Statement.RETURN_GENERATED_KEYS);
+            st.setDouble(0, obj.getValue());
+            st.setDate(1, (Date) obj.getDate());
+             
             int rowsAffected = st.executeUpdate();
             
             if (rowsAffected > 0) {
@@ -38,12 +42,13 @@ public class AccountJDBC {
         }
     }
     
-    public void update(Account obj) {
+    @Override
+    public void update(Card obj) {
         PreparedStatement st = null;
         try {
-            st = conn.prepareStatement("UPDATE Account SET account = ?,value = ? WHERE id = ?",Statement.RETURN_GENERATED_KEYS);
-            st.setString(0, obj.getAccount());
+            st = conn.prepareStatement("UPDATE Account SET value = ?,date = ?, WHERE id = ?",Statement.RETURN_GENERATED_KEYS);      
             st.setDouble(1, obj.getValue());
+            st.setDate(1, (Date) obj.getDate());
             st.setInt(2, obj.getId());
             int rowsAffected = st.executeUpdate();
             
@@ -57,10 +62,11 @@ public class AccountJDBC {
         }
     }
     
+    @Override
     public void deleteById(Integer id) {
         PreparedStatement st = null;
         try {
-            st = conn.prepareStatement("DELETE FROM Account WHERE id = ?");
+            st = conn.prepareStatement("DELETE FROM Card WHERE id = ?");
             st.setInt(0, id);
             st.executeUpdate();
         } catch(SQLException e) {
@@ -70,18 +76,19 @@ public class AccountJDBC {
         }
     }
     
-    public List<Account> findAll() {
+    @Override
+    public List<Card> findAll() {
         PreparedStatement st = null;
         ResultSet rs = null;
         try {
-            st = conn.prepareStatement("SELECT * FROM Account");
+            st = conn.prepareStatement("SELECT * FROM Card");
             rs = st.executeQuery();
             
-            List<Account> list = new ArrayList<>();
+            List<Card> list = new ArrayList<>();
             while (rs.next()) {
                 
-                Account account = new Account(rs.getString("account"),rs.getDouble("value"));
-                list.add(account);
+                Card card = new Card(rs.getInt("id"),rs.getDate("date"),rs.getDouble("value"));
+                list.add(card);
             }
             return list;
         } catch (SQLException e) {
@@ -91,4 +98,5 @@ public class AccountJDBC {
             DB.closeResultSet(rs);
         }
     }
+
 }

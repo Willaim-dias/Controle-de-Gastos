@@ -15,11 +15,6 @@ public class Account {
         this.Value = Value;
     }
  
-    public Account(String account, Double Value) {
-        this.account = account;
-        this.Value = Value;
-    }
-
     public Integer getId() {
         return id;
     }

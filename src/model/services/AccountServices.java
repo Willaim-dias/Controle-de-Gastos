@@ -1,16 +1,27 @@
 package model.services;
 
-import model.AccountJDBC;
+import java.util.List;
+import model.dao.AccountDao;
+import model.dao.DaoFactory;
+import model.entities.Account;
 
 public class AccountServices {
     
-    private AccountJDBC jdbc;
+    private AccountDao dao = DaoFactory.createAccountDao();
     
-    public AccountServices() {
-        jdbc = new AccountJDBC();
+    public List<Account> findAll() {
+        return dao.findAll();
     }
     
+    public void saveOrUpdate(Account obj) {
+        if (obj.getId() == null) {
+            dao.insert(obj);
+        } else {
+            dao.update(obj);
+        }
+    }
     
-    
-    
+    public void remove(Account obj) {
+        dao.deleteById(obj.getId());
+    }
 }

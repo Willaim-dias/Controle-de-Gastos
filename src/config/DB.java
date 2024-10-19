@@ -18,6 +18,7 @@ public class DB {
         try {
             File file = new File("myAccount.sqlite");
             if (file.exists()) {
+                System.out.println("Banco de dados encontrado");
                 if (conn == null) {
                     return conn = DriverManager.getConnection("jdbc:sqlite:myAccount");
                 } else {

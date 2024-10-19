@@ -39,8 +39,8 @@ public class GraphicsViewController implements Initializable {
         }
     }
     
-    Account a1 = new Account("Agua",56.90);
-    Account a2 = new Account("Luz",130.00);
+    Account a1 = new Account(null,"Agua",56.90);
+    Account a2 = new Account(null,"Luz",130.00);
     
     private void addDataGraphic() {
         ObservableList<PieChart.Data> pieCharData = FXCollections.observableArrayList(

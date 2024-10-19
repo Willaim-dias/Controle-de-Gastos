@@ -44,7 +44,7 @@
                   <Font size="16.0" />
                </font>
             </TextField>
-            <Button fx:id="btnSave" mnemonicParsing="false" prefHeight="32.0" prefWidth="165.0" text="Salvar" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+            <Button fx:id="btnSave" mnemonicParsing="false" onAction="#onBtnSaveAccount" prefHeight="32.0" prefWidth="165.0" text="Salvar" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                <GridPane.margin>
                   <Insets />
                </GridPane.margin>
@@ -67,31 +67,32 @@
             </Label>
          </children>
       </GridPane>
-      <TableView layoutX="14.0" layoutY="194.0" prefHeight="359.0" prefWidth="559.0">
+      <TableView fx:id="tableAccount" layoutX="14.0" layoutY="194.0" prefHeight="359.0" prefWidth="559.0">
         <columns>
-          <TableColumn fx:id="conlumnAccount" prefWidth="191.0" text="Conta" />
-          <TableColumn fx:id="columnValue" minWidth="5.0" prefWidth="176.0" text="Valor" />
-            <TableColumn fx:id="columnEdi" prefWidth="97.0" />
-            <TableColumn fx:id="columnRemo" prefWidth="94.0" />
+            <TableColumn fx:id="columnId" prefWidth="75.0" text="id" />
+          <TableColumn fx:id="conlumnAccount" prefWidth="138.0" text="Conta" />
+          <TableColumn fx:id="columnValue" minWidth="5.0" prefWidth="186.0" text="Valor" />
+            <TableColumn fx:id="columnEdi" prefWidth="90.0" />
+            <TableColumn fx:id="columnRemo" prefWidth="144.0" />
         </columns>
       </TableView>
-      <Label fx:id="labelIcome" layoutX="632.0" layoutY="374.0" prefHeight="62.0" prefWidth="315.0" styleClass="border-bar" />
+      <Label fx:id="labelResult" layoutX="632.0" layoutY="374.0" prefHeight="62.0" prefWidth="315.0" styleClass="border-bar" />
       <Label fx:id="labelTotal" layoutX="632.0" layoutY="287.0" prefHeight="62.0" prefWidth="315.0" styleClass="border-bar" />
       <GridPane layoutX="632.0" layoutY="222.0" prefHeight="40.0" prefWidth="315.0">
         <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="235.0" minWidth="10.0" prefWidth="235.0" />
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="162.0" minWidth="10.0" prefWidth="80.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="241.0" minWidth="10.0" prefWidth="230.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="162.0" minWidth="10.0" prefWidth="85.0" />
         </columnConstraints>
         <rowConstraints>
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <TextField prefHeight="38.0" prefWidth="230.0">
+            <TextField fx:id="txtIncome" prefHeight="38.0" prefWidth="230.0">
                <GridPane.margin>
                   <Insets right="5.0" />
                </GridPane.margin>
             </TextField>
-            <Button mnemonicParsing="false" prefHeight="38.0" prefWidth="78.0" text="Calcular" GridPane.columnIndex="1">
+            <Button mnemonicParsing="false" prefHeight="38.0" prefWidth="123.0" text="Calcular" GridPane.columnIndex="1">
                <font>
                   <Font size="16.0" />
                </font>
