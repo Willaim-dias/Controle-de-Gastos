@@ -7,3 +7,9 @@
 .title-back {
     -fx-background-color: #DAA520;
 }
+
+.listView {
+    -fx-font-size: 14px;
+    -fx-border-color: #000;
+    -fx-border-radius: 5px;
+}

@@ -14,11 +14,6 @@ public class Card {
         this.value = value;
     }
 
-    public Card(Date date, Double value) {
-        this.date = date;
-        this.value = value;
-    }
-
     public Integer getId() {
         return id;
     }
@@ -42,9 +37,4 @@ public class Card {
     public void setValue(Double value) {
         this.value = value;
     }
-
-    public String Date() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-   
 }

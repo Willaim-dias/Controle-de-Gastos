@@ -5,6 +5,7 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
@@ -28,12 +29,12 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button mnemonicParsing="false" prefHeight="32.0" prefWidth="140.0" text="Salvar" GridPane.columnIndex="2" GridPane.rowIndex="1">
+            <Button fx:id="btnSave" mnemonicParsing="false" onAction="#onBtnSaveAccount" prefHeight="32.0" prefWidth="140.0" text="Salvar" GridPane.columnIndex="2" GridPane.rowIndex="1">
                <font>
                   <Font size="16.0" />
                </font>
             </Button>
-            <Label text="Valor Fatura">
+            <Label text="Valor da Fatura">
                <font>
                   <Font size="16.0" />
                </font>
@@ -46,8 +47,8 @@
                   <Font size="16.0" />
                </font>
             </Label>
-            <TextField prefHeight="32.0" prefWidth="167.0" GridPane.rowIndex="1" />
-            <DatePicker prefHeight="32.0" prefWidth="142.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <TextField fx:id="txtValue" prefHeight="32.0" prefWidth="167.0" GridPane.rowIndex="1" />
+            <DatePicker fx:id="txtDate" prefHeight="32.0" prefWidth="142.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
@@ -57,11 +58,12 @@
             </DatePicker>
          </children>
       </GridPane>
-      <TableView layoutX="14.0" layoutY="200.0" prefHeight="290.0" prefWidth="500.0">
+      <TableView fx:id="tableCard" layoutX="14.0" layoutY="200.0" prefHeight="290.0" prefWidth="500.0">
         <columns>
-          <TableColumn prefWidth="172.0" text="Valor fatura" />
-          <TableColumn prefWidth="214.0" text="Data Pagamento" />
-            <TableColumn prefWidth="113.0" />
+            <TableColumn fx:id="columnId" prefWidth="75.0" text="Id" />
+          <TableColumn fx:id="columnValue" prefWidth="130.0" text="Valor fatura" />
+          <TableColumn fx:id="columnDate" prefWidth="162.0" text="Data Pagamento" />
+            <TableColumn fx:id="columnRemo" prefWidth="110.0" />
         </columns>
       </TableView>
       <Label alignment="CENTER" layoutY="14.0" prefHeight="53.0" prefWidth="306.0" styleClass="title-back" text="Gastos do Cartão" textFill="WHITE">
@@ -69,14 +71,10 @@
             <Font size="36.0" />
          </font>
       </Label>
-      <TableView layoutX="548.0" layoutY="200.0" prefHeight="290.0" prefWidth="295.0">
-        <columns>
-          <TableColumn prefWidth="150.0" text="Valor Fatura" />
-          <TableColumn prefWidth="150.0" text="Data Pagamento" />
-        </columns>
-      </TableView>
-      <ComboBox layoutX="548.0" layoutY="139.0" prefHeight="37.0" prefWidth="295.0" promptText=" Filtrar" />
+      <ComboBox fx:id="comboBoxDate" layoutX="548.0" layoutY="139.0" onAction="#updateListView" prefHeight="37.0" prefWidth="250.0" promptText=" Filtrar" />
       <Label layoutX="548.0" layoutY="500.0" prefHeight="53.0" prefWidth="295.0" />
       <Pane layoutY="523.0" prefHeight="30.0" prefWidth="1000.0" styleClass="title-back" />
+      <ListView fx:id="listFilter" layoutX="548.0" layoutY="200.0" prefHeight="220.0" prefWidth="250.0" styleClass="listView" />
+      <Label fx:id="labelFilterTotal" alignment="CENTER" layoutX="548.0" layoutY="443.0" prefHeight="47.0" prefWidth="250.0" styleClass="listView" />
    </children>
 </AnchorPane>

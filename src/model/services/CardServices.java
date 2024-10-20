@@ -1,10 +1,8 @@
 package model.services;
 
 import java.util.List;
-import model.dao.AccountDao;
 import model.dao.CardDao;
 import model.dao.DaoFactory;
-import model.entities.Account;
 import model.entities.Card;
 
 public class CardServices {

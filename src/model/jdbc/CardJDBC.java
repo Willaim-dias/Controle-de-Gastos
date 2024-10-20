@@ -3,7 +3,6 @@ package model.jdbc;
 import config.DB;
 import config.DbException;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -11,7 +10,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import model.dao.CardDao;
-import model.entities.Account;
 import model.entities.Card;
 
 public class CardJDBC implements CardDao{
@@ -27,8 +25,8 @@ public class CardJDBC implements CardDao{
         PreparedStatement st = null;
         try {
             st = conn.prepareStatement("INSERT INTO tb_card (value,date) VALUES (?,?)",Statement.RETURN_GENERATED_KEYS);
-            st.setDouble(0, obj.getValue());
-            st.setDate(1, (Date) obj.getDate());
+            st.setDouble(1, obj.getValue());
+            st.setDate(2, new java.sql.Date(obj.getDate().getTime()));
              
             int rowsAffected = st.executeUpdate();
             
@@ -48,13 +46,9 @@ public class CardJDBC implements CardDao{
         try {
             st = conn.prepareStatement("UPDATE tb_card SET value = ?,date = ?, WHERE id = ?",Statement.RETURN_GENERATED_KEYS);      
             st.setDouble(1, obj.getValue());
-            st.setDate(1, (Date) obj.getDate());
-            st.setInt(2, obj.getId());
+            //st.setDate(2, (Date) obj.getDate());
+            st.setInt(3, obj.getId());
             int rowsAffected = st.executeUpdate();
-            
-            if (rowsAffected > 0) {
-                
-            }
         } catch (SQLException e) {
             throw new DbException(e.getMessage());
         } finally {
@@ -67,7 +61,7 @@ public class CardJDBC implements CardDao{
         PreparedStatement st = null;
         try {
             st = conn.prepareStatement("DELETE FROM tb_card WHERE id = ?");
-            st.setInt(0, id);
+            st.setInt(1, id);
             st.executeUpdate();
         } catch(SQLException e) {
             throw new DbException(e.getMessage());
