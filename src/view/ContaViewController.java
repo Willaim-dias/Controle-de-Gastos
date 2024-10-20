@@ -158,7 +158,12 @@ public class ContaViewController extends DataChangeListener implements Initializ
         columnEdi.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(param.getValue()));
         columnEdi.setCellFactory(param -> new TableCell<Account, Account>() {
             private final Button button = new Button("editar");
-
+            
+            {
+                button.setPrefWidth(100);
+                button.setPrefHeight(20);
+            }
+            
             @Override
             protected void updateItem(Account obj, boolean empty) {
                 super.updateItem(obj, empty);
@@ -179,6 +184,11 @@ public class ContaViewController extends DataChangeListener implements Initializ
         columnRemo.setCellFactory(param -> new TableCell<Account, Account>() {
             private final Button button = new Button("remover");
 
+            {
+                button.setPrefWidth(100);
+                button.setPrefHeight(20);
+            }
+            
             @Override
             protected void updateItem(Account obj, boolean empty) {
                 super.updateItem(obj, empty);

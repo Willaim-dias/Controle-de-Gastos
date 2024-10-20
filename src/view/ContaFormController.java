@@ -21,7 +21,7 @@ public class ContaFormController implements Initializable {
     private Account account;
     private AccountServices services;
     
-    private List<DataChangeListener> DataChangeListeners = new ArrayList<>();
+    private final List<DataChangeListener> DataChangeListeners = new ArrayList<>();
     
     @FXML
     private TextField txtId;

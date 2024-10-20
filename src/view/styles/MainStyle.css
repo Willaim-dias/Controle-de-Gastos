@@ -1,6 +1,7 @@
 
 .border-bar {
     -fx-border-color: #000;
+    -fx-border-radius: 5px;
 }
 
 .title-back {
