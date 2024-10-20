@@ -70,14 +70,20 @@
       <TableView fx:id="tableAccount" layoutX="14.0" layoutY="194.0" prefHeight="359.0" prefWidth="559.0">
         <columns>
             <TableColumn fx:id="columnId" prefWidth="75.0" text="id" />
-          <TableColumn fx:id="conlumnAccount" prefWidth="138.0" text="Conta" />
-          <TableColumn fx:id="columnValue" minWidth="5.0" prefWidth="186.0" text="Valor" />
-            <TableColumn fx:id="columnEdi" prefWidth="90.0" />
-            <TableColumn fx:id="columnRemo" prefWidth="144.0" />
+          <TableColumn fx:id="conlumnAccount" prefWidth="162.0" text="Conta" />
+          <TableColumn fx:id="columnValue" minWidth="5.0" prefWidth="115.0" text="Valor" />
+            <TableColumn fx:id="columnEdi" prefWidth="106.0" />
+            <TableColumn fx:id="columnRemo" prefWidth="97.0" />
         </columns>
       </TableView>
-      <Label fx:id="labelResult" layoutX="632.0" layoutY="374.0" prefHeight="62.0" prefWidth="315.0" styleClass="border-bar" />
-      <Label fx:id="labelTotal" layoutX="632.0" layoutY="287.0" prefHeight="62.0" prefWidth="315.0" styleClass="border-bar" />
+      <Label fx:id="labelResult" alignment="CENTER" layoutX="632.0" layoutY="374.0" prefHeight="62.0" prefWidth="315.0" styleClass="border-bar">
+         <font>
+            <Font size="25.0" />
+         </font></Label>
+      <Label fx:id="labelTotal" alignment="CENTER" layoutX="632.0" layoutY="287.0" prefHeight="62.0" prefWidth="315.0" styleClass="border-bar">
+         <font>
+            <Font size="25.0" />
+         </font></Label>
       <GridPane layoutX="632.0" layoutY="222.0" prefHeight="40.0" prefWidth="315.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="241.0" minWidth="10.0" prefWidth="230.0" />
@@ -92,7 +98,7 @@
                   <Insets right="5.0" />
                </GridPane.margin>
             </TextField>
-            <Button mnemonicParsing="false" prefHeight="38.0" prefWidth="123.0" text="Calcular" GridPane.columnIndex="1">
+            <Button fx:id="btnCalc" mnemonicParsing="false" onAction="#onBtnRemainingValue" prefHeight="38.0" prefWidth="123.0" text="Calcular" GridPane.columnIndex="1">
                <font>
                   <Font size="16.0" />
                </font>

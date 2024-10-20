@@ -26,7 +26,7 @@ public class CardJDBC implements CardDao{
     public void insert(Card obj) {
         PreparedStatement st = null;
         try {
-            st = conn.prepareStatement("INSERT INTO Card (value,date) VALUES (?,?)",Statement.RETURN_GENERATED_KEYS);
+            st = conn.prepareStatement("INSERT INTO tb_card (value,date) VALUES (?,?)",Statement.RETURN_GENERATED_KEYS);
             st.setDouble(0, obj.getValue());
             st.setDate(1, (Date) obj.getDate());
              
@@ -46,7 +46,7 @@ public class CardJDBC implements CardDao{
     public void update(Card obj) {
         PreparedStatement st = null;
         try {
-            st = conn.prepareStatement("UPDATE Account SET value = ?,date = ?, WHERE id = ?",Statement.RETURN_GENERATED_KEYS);      
+            st = conn.prepareStatement("UPDATE tb_card SET value = ?,date = ?, WHERE id = ?",Statement.RETURN_GENERATED_KEYS);      
             st.setDouble(1, obj.getValue());
             st.setDate(1, (Date) obj.getDate());
             st.setInt(2, obj.getId());
@@ -66,7 +66,7 @@ public class CardJDBC implements CardDao{
     public void deleteById(Integer id) {
         PreparedStatement st = null;
         try {
-            st = conn.prepareStatement("DELETE FROM Card WHERE id = ?");
+            st = conn.prepareStatement("DELETE FROM tb_card WHERE id = ?");
             st.setInt(0, id);
             st.executeUpdate();
         } catch(SQLException e) {
@@ -81,7 +81,7 @@ public class CardJDBC implements CardDao{
         PreparedStatement st = null;
         ResultSet rs = null;
         try {
-            st = conn.prepareStatement("SELECT * FROM Card");
+            st = conn.prepareStatement("SELECT * FROM tb_card");
             rs = st.executeQuery();
             
             List<Card> list = new ArrayList<>();

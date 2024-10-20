@@ -26,7 +26,7 @@ public class AccountJDBC implements AccountDao{
     public void insert(Account obj) {
         PreparedStatement st = null;
         try {
-            st = conn.prepareStatement("INSERT INTO account(name,value) VALUES (?,?)",Statement.RETURN_GENERATED_KEYS);
+            st = conn.prepareStatement("INSERT INTO tb_account(account,value) VALUES (?,?)",Statement.RETURN_GENERATED_KEYS);
             st.setString(1, obj.getAccount());
             st.setDouble(2, obj.getValue());
             
@@ -46,14 +46,14 @@ public class AccountJDBC implements AccountDao{
     public void update(Account obj) {
         PreparedStatement st = null;
         try {
-            st = conn.prepareStatement("UPDATE Account SET account = ?,value = ? WHERE id = ?",Statement.RETURN_GENERATED_KEYS);
-            st.setString(0, obj.getAccount());
-            st.setDouble(1, obj.getValue());
-            st.setInt(2, obj.getId());
+            st = conn.prepareStatement("UPDATE tb_account SET account = ?,value = ? WHERE id = ?",Statement.RETURN_GENERATED_KEYS);
+            st.setString(1, obj.getAccount());
+            st.setDouble(2, obj.getValue());
+            st.setInt(3, obj.getId());
             int rowsAffected = st.executeUpdate();
             
             if (rowsAffected > 0) {
-                
+               Alerts.showAlert("Info", "", "Atualizado com success", Alert.AlertType.INFORMATION); 
             }
         } catch (SQLException e) {
             throw new DbException(e.getMessage());
@@ -66,8 +66,8 @@ public class AccountJDBC implements AccountDao{
     public void deleteById(Integer id) {
         PreparedStatement st = null;
         try {
-            st = conn.prepareStatement("DELETE FROM Account WHERE id = ?");
-            st.setInt(0, id);
+            st = conn.prepareStatement("DELETE FROM tb_account WHERE id = ?");
+            st.setInt(1, id);
             st.executeUpdate();
         } catch(SQLException e) {
             throw new DbException(e.getMessage());
@@ -81,7 +81,7 @@ public class AccountJDBC implements AccountDao{
         PreparedStatement st = null;
         ResultSet rs = null;
         try {
-            st = conn.prepareStatement("SELECT * FROM Account");
+            st = conn.prepareStatement("SELECT * FROM tb_account");
             rs = st.executeQuery();
             
             List<Account> list = new ArrayList<>();
