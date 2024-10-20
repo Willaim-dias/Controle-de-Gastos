@@ -1,48 +1,43 @@
 package config;
 
-import java.io.FileInputStream;
-import java.io.IOException;
+import java.io.File;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Properties;
+import javafx.scene.control.Alert;
+import view.util.Alerts;
+
 
 public class DB {
 
     private static Connection conn = null;
-
+    
     public static Connection getConnection() {
-        if (conn == null) {
-            try {
-                Properties props = loadProperties();
-                String url = props.getProperty("dburl");
-                conn = DriverManager.getConnection(url, props);
-            } catch (SQLException e) {
-                throw new DbException(e.getMessage());
+        File file = new File("data_account.sqlite");
+
+        if (file.exists()) {
+            if (conn == null) {
+                try {
+                    conn = DriverManager.getConnection("jdbc:sqlite:data_account.sqlite");
+                    return conn;
+                } catch (SQLException ex) {
+                }
+            } else {
+                return conn;
             }
+        } else {
+            Alerts.showAlert("Erro", "", "Banco de dados nao encontrado", Alert.AlertType.ERROR);
         }
-        return conn;
+        return null;
     }
 
-    public static void closeConnection() {
-        if (conn != null) {
-            try {
-                conn.close();
-            } catch (SQLException e) {
-                throw new DbException(e.getMessage());
-            }
-        }
-    }
-
-    private static Properties loadProperties() {
-        try (FileInputStream fs = new FileInputStream("db.properties")) {
-            Properties props = new Properties();
-            props.load(fs);
-            return props;
-        } catch (IOException e) {
-            throw new DbException(e.getMessage());
+    public void closeConnection() {
+        try {
+            conn.close();
+        } catch (SQLException e) {
+            Alerts.showAlert("Erro", "", e.getMessage(), Alert.AlertType.ERROR);
         }
     }
 
@@ -51,7 +46,7 @@ public class DB {
             try {
                 st.close();
             } catch (SQLException e) {
-                throw new DbException(e.getMessage());
+                Alerts.showAlert("Erro", "", e.getMessage(), Alert.AlertType.ERROR);
             }
         }
     }
@@ -61,8 +56,9 @@ public class DB {
             try {
                 rs.close();
             } catch (SQLException e) {
-                throw new DbException(e.getMessage());
+                Alerts.showAlert("Erro", "", e.getMessage(), Alert.AlertType.ERROR);
             }
         }
     }
+    
 }
