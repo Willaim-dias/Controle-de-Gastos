@@ -82,6 +82,22 @@ public class ContaViewController extends DataChangeListener implements Initializ
         }
     }
 
+    public void onBtnShowHistory() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/SpendingHistoryView.fxml"));
+            AnchorPane anchorPane = loader.load();
+            
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("Historico de Gastos");
+            dialogStage.setScene(new Scene(anchorPane));
+            dialogStage.setResizable(false);
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.showAndWait();
+        } catch (IOException e) {
+            Alerts.showAlert("IO Exception", "Error loading view", e.getMessage(), Alert.AlertType.ERROR);
+        }
+    }
+    
     public void onBtnRemainingValue() {
         if (txtIncome.getText().equals("")) {
             txtIncome.setStyle("-fx-border-color: red;");
