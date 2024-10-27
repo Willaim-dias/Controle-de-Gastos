@@ -4,6 +4,7 @@ import config.DbIntegrityException;
 import java.io.IOException;
 import java.net.URL;
 import java.text.DecimalFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -27,7 +28,9 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.entities.Account;
+import model.entities.History;
 import model.services.AccountServices;
+import model.services.HistoryServices;
 import view.listeners.DataChangeListener;
 import view.util.Alerts;
 import view.util.Utils;
@@ -122,6 +125,16 @@ public class ContaViewController extends DataChangeListener implements Initializ
         }  
     }
 
+    public void onBtSaveHistory() {
+        HistoryServices historyServices = new HistoryServices();
+        String dataList = "";
+        for (Account a: obsList) {
+            dataList += a.getAccount()+";"+a.getValue()+":";
+        }
+        History history = new History(null, dataList, new Date());
+        historyServices.save(history);
+    }
+    
     public void updateTableView() {
         if (service == null) {
             throw new IllegalStateException("Service was null");

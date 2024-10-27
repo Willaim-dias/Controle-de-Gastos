@@ -26,7 +26,7 @@
          </font>
       </Button>
       <Pane layoutY="523.0" prefHeight="30.0" prefWidth="1000.0" styleClass="title-back" />
-      <Button layoutX="550.0" layoutY="433.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="129.0" text="Ver Historico">
+      <Button layoutX="550.0" layoutY="433.0" mnemonicParsing="false" onAction="#onBtnShowHistory" prefHeight="53.0" prefWidth="129.0" text="Ver Historico">
          <font>
             <Font size="16.0" />
          </font>

@@ -6,12 +6,15 @@ import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.time.ZoneId;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.Set;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
@@ -64,10 +67,10 @@ public class CreditCardViewController implements Initializable {
 
     @FXML
     private Label labelFilterTotal;
-    
+
     private ObservableList<Card> obsList;
 
-    public void onBtnSaveAccount() {
+    public void onBtnSaveAccount(ActionEvent event) {
         if (txtValue.getText().equals("") && txtDate.getValue() == null) {
             Alerts.showAlert("Info", "", "Preencha ambos os campos", Alert.AlertType.INFORMATION);
         } else {
@@ -87,14 +90,14 @@ public class CreditCardViewController implements Initializable {
             String date = sdf.format(card.getDate());
 
             if (date.equals(comboBoxDate.getValue())) {
-                String data = "Valor: R$"+card.getValue()+", Data: "+sdf0.format(card.getDate());
+                String data = "Valor: R$" + card.getValue() + ", Data: " + sdf0.format(card.getDate());
                 sum += card.getValue();
                 listFilter.getItems().add(data);
             }
         }
-        labelFilterTotal.setText("Total R$"+String.format("%.2f", sum));
+        labelFilterTotal.setText("Total R$" + String.format("%.2f", sum));
     }
-    
+
     public void updateTableView() {
         if (service == null) {
             throw new IllegalStateException("Service was null");
@@ -163,15 +166,15 @@ public class CreditCardViewController implements Initializable {
     private void addDateComboBox(List<Card> list) {
         comboBoxDate.getItems().clear();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy");
-        String oldDate = null;
+        Set<String> uniqueYears = new HashSet<>(); // Conjunto para armazenar anos únicos
 
         for (Card card : list) {
-            String newDate = sdf.format(card.getDate());
+            String year = sdf.format(card.getDate());
 
-            if (oldDate == null || !oldDate.equals(newDate)) {
-                oldDate = newDate;
-                comboBoxDate.getItems().add(newDate);
+            if (uniqueYears.add(year)) { // Adiciona o ano ao conjunto e verifica se é único
+                comboBoxDate.getItems().add(year);
             }
         }
     }
+
 }

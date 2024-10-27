@@ -3,26 +3,26 @@ package model.services;
 import java.util.List;
 import model.dao.AccountDao;
 import model.dao.DaoFactory;
+import model.dao.HistoryDao;
 import model.entities.Account;
+import model.entities.History;
 
-public class AccountServices {
+public class HistoryServices {
     
-    private AccountDao dao = DaoFactory.createAccountDao();
+    private HistoryDao dao = DaoFactory.createHistoryDao();
     
-    public List<Account> findAll() {
+    public List<History> findAll() {
         return dao.findAll();
     }
     
-    public void saveOrUpdate(Account obj) {
+    public void save(History obj) {
         if (obj.getId() == null) {
             dao.insert(obj);
-        } else {
-            dao.update(obj);
-        }
+        } 
     }
     
-    public void remove(Account obj) {
+    public void remove(History obj) {
         dao.deleteById(obj.getId());
     }
- 
+
 }

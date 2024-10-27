@@ -1,5 +1,6 @@
 package view;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -7,12 +8,19 @@ import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.chart.PieChart;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import model.entities.Account;
 import model.services.AccountServices;
+import view.util.Alerts;
 
 public class GraphicsViewController implements Initializable {
 
@@ -27,6 +35,22 @@ public class GraphicsViewController implements Initializable {
 
     @FXML
     private Button btnShowValue;
+
+    public void onBtnShowHistory() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/SpendingHistoryView.fxml"));
+            AnchorPane anchorPane = loader.load();
+            
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("Historico de Gastos");
+            dialogStage.setScene(new Scene(anchorPane));
+            dialogStage.setResizable(false);
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.showAndWait();
+        } catch (IOException e) {
+            Alerts.showAlert("IO Exception", "Error loading view", e.getMessage(), Alert.AlertType.ERROR);
+        }
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
