@@ -9,8 +9,10 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import javafx.scene.control.Alert;
 import model.dao.CardDao;
 import model.entities.Card;
+import view.util.Alerts;
 
 public class CardJDBC implements CardDao{
     
@@ -28,12 +30,9 @@ public class CardJDBC implements CardDao{
             st.setDouble(1, obj.getValue());
             st.setDate(2, new java.sql.Date(obj.getDate().getTime()));
              
-            int rowsAffected = st.executeUpdate();
-            
-            if (rowsAffected > 0) {
-                
-            }
+            st.executeUpdate();
         } catch (SQLException e) {
+            Alerts.showAlert("Erro","",e.getMessage(), Alert.AlertType.ERROR);
             throw new DbException(e.getMessage());
         } finally {
             DB.closeStatement(st);

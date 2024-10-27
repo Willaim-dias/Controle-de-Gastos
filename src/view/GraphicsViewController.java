@@ -64,7 +64,7 @@ public class GraphicsViewController implements Initializable {
             labelValue.setText("");
             showValue = false;
         } else {
-            labelValue.setText("R$ "+sum);
+            labelValue.setText("R$ "+String.format("%.2f", sum));
             showValue = true;
         }
     }

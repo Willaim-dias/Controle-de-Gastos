@@ -1,6 +1,7 @@
 package view;
 
 import config.DbIntegrityException;
+import java.io.IOException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
@@ -74,10 +75,14 @@ public class CreditCardViewController implements Initializable {
         if (txtValue.getText().equals("") && txtDate.getValue() == null) {
             Alerts.showAlert("Info", "", "Preencha ambos os campos", Alert.AlertType.INFORMATION);
         } else {
-            Instant instant = txtDate.getValue().atStartOfDay().atZone(ZoneId.systemDefault()).toInstant();
-            Card obj = new Card(null, Date.from(instant), Double.valueOf(txtValue.getText()));
-            service.saveOrUpdate(obj);
-            updateTableView();
+            try {
+                Instant instant = txtDate.getValue().atStartOfDay().atZone(ZoneId.systemDefault()).toInstant();
+                Card obj = new Card(null, Date.from(instant), Double.valueOf(txtValue.getText()));
+                service.saveOrUpdate(obj);
+                updateTableView();
+            } catch (RuntimeException e)  {
+                Alerts.showAlert("Erro", "", "Ocorreu um erro inesperado", Alert.AlertType.ERROR);
+            }
         }
     }
 

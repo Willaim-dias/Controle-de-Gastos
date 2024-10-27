@@ -30,12 +30,9 @@ public class AccountJDBC implements AccountDao{
             st.setString(1, obj.getAccount());
             st.setDouble(2, obj.getValue());
             
-            int rowsAffected = st.executeUpdate();
-            
-            if (rowsAffected > 0) {
-                Alerts.showAlert("Info", "", "Salvo com success", Alert.AlertType.INFORMATION);
-            }
+            st.executeUpdate();          
         } catch (SQLException e) {
+            Alerts.showAlert("Erro","",e.getMessage(), Alert.AlertType.ERROR);
             throw new DbException("Erro:"+e.getMessage());
         } finally {
             DB.closeStatement(st);

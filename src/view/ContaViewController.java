@@ -36,10 +36,9 @@ import view.util.Alerts;
 import view.util.Utils;
 
 public class ContaViewController extends DataChangeListener implements Initializable {
+
     private final AccountServices service = new AccountServices();
-        
-    DecimalFormat df = new DecimalFormat("0.##"); 
-    
+
     @FXML
     private TextField txtAccount;
 
@@ -77,8 +76,15 @@ public class ContaViewController extends DataChangeListener implements Initializ
 
     public void onBtnSaveAccount() {
         if (txtAccount.getText().equals("") || txtValue.getText().equals("")) {
-            Alerts.showAlert("Info", "", "Preencha ambos os campos", Alert.AlertType.INFORMATION);
+            if (txtAccount.getText().equals("")) {
+                txtAccount.setStyle("-fx-border-color: red;");
+            } else {
+                txtAccount.setStyle("-fx-border-color: none;");
+                txtValue.setStyle("-fx-border-color: red;");
+            }
         } else {
+            txtAccount.setStyle("-fx-border-color: none;");
+            txtValue.setStyle("-fx-border-color: none;");
             Account obj = new Account(null, txtAccount.getText(), Double.valueOf(txtValue.getText()));
             service.saveOrUpdate(obj);
             updateTableView();
@@ -89,7 +95,7 @@ public class ContaViewController extends DataChangeListener implements Initializ
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/SpendingHistoryView.fxml"));
             AnchorPane anchorPane = loader.load();
-            
+
             Stage dialogStage = new Stage();
             dialogStage.setTitle("Historico de Gastos");
             dialogStage.setScene(new Scene(anchorPane));
@@ -100,41 +106,46 @@ public class ContaViewController extends DataChangeListener implements Initializ
             Alerts.showAlert("IO Exception", "Error loading view", e.getMessage(), Alert.AlertType.ERROR);
         }
     }
-    
+
     public void onBtnRemainingValue() {
         if (txtIncome.getText().equals("")) {
             txtIncome.setStyle("-fx-border-color: red;");
         } else if (labelTotal.getText().equals("")) {
             Alerts.showAlert("Erro", "", "ocorreu um erro inesperado", Alert.AlertType.INFORMATION);
-        }
-        try {       
-            String[] partes = labelTotal.getText().split("Total: R\\$");
+        } else {
+            try {
+                String[] partes = labelTotal.getText().split("Total: R\\$");
 
-            double tolaSum =  Double.parseDouble(partes[1].replace(",","."));
-            double income = Double.parseDouble( txtIncome.getText());
-            double sum = (tolaSum - income);
-            
-            if (tolaSum <= 0){
-              labelResult.setText("00.00");  
-            } else {
-                labelResult.setText("R$ "+df.format(sum));
-            }       
-        } catch (NumberFormatException e){
-            
-            Alerts.showAlert("Erro", "Erro ao  calcular",e.getMessage(), Alert.AlertType.WARNING);
-        }  
+                double tolaSum = Double.parseDouble(partes[1].replace(",", "."));
+                double income = Double.parseDouble(txtIncome.getText());
+                double sum = (tolaSum - income);
+
+                if (tolaSum <= 0) {
+                    labelResult.setText("00.00");
+                } else {
+                    labelResult.setText("R$ " + String.format("%.2f", sum));
+                }
+            } catch (NumberFormatException e) {
+                Alerts.showAlert("Erro", "Erro ao  calcular", e.getMessage(), Alert.AlertType.WARNING);
+            }
+        }
     }
 
     public void onBtSaveHistory() {
         HistoryServices historyServices = new HistoryServices();
         String dataList = "";
-        for (Account a: obsList) {
-            dataList += a.getAccount()+";"+a.getValue()+":";
+
+        for (Account a : obsList) {
+            dataList += a.getAccount() + ";" + a.getValue() + ":";
         }
-        History history = new History(null, dataList, new Date());
-        historyServices.save(history);
+        if (!dataList.equals("")) {
+            History history = new History(null, dataList, new Date());
+            historyServices.save(history);
+        } else {
+            Alerts.showAlert("Info", "", "Nao a dados para salvar", Alert.AlertType.INFORMATION);
+        }
     }
-    
+
     public void updateTableView() {
         if (service == null) {
             throw new IllegalStateException("Service was null");
@@ -187,12 +198,12 @@ public class ContaViewController extends DataChangeListener implements Initializ
         columnEdi.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(param.getValue()));
         columnEdi.setCellFactory(param -> new TableCell<Account, Account>() {
             private final Button button = new Button("editar");
-            
+
             {
                 button.setPrefWidth(100);
                 button.setPrefHeight(20);
             }
-            
+
             @Override
             protected void updateItem(Account obj, boolean empty) {
                 super.updateItem(obj, empty);
@@ -217,7 +228,7 @@ public class ContaViewController extends DataChangeListener implements Initializ
                 button.setPrefWidth(100);
                 button.setPrefHeight(20);
             }
-            
+
             @Override
             protected void updateItem(Account obj, boolean empty) {
                 super.updateItem(obj, empty);
@@ -253,7 +264,7 @@ public class ContaViewController extends DataChangeListener implements Initializ
         for (Account a : list) {
             sum += a.getValue();
         }
-        labelTotal.setText("Total: R$"+ df.format(sum));
+        labelTotal.setText("Total: R$" + String.format("%.2f", sum));
     }
 
     @Override

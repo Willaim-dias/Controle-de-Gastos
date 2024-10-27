@@ -6,7 +6,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import view.util.Utils;
 
 public class Main extends Application {
 
@@ -20,6 +19,7 @@ public class Main extends Application {
     
             mainScene = new Scene(anchorPane);
             primaryStage.setScene(mainScene);
+            primaryStage.setResizable(false);
             primaryStage.setTitle("Controle de Gastos");
             primaryStage.show();
         } catch (IOException e) {

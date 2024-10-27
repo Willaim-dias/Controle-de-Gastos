@@ -15,18 +15,28 @@
             <Font size="36.0" />
          </font>
       </Label>
-      <Label fx:id="labelValue" alignment="CENTER" layoutX="677.0" layoutY="86.0" prefHeight="53.0" prefWidth="205.0" styleClass="border-bar">
+      <Label fx:id="labelValue" alignment="CENTER" layoutX="695.0" layoutY="86.0" prefHeight="53.0" prefWidth="205.0" styleClass="border-bar">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Button fx:id="btnShowValue" layoutX="550.0" layoutY="86.0" mnemonicParsing="false" onAction="#totalValueShow" prefHeight="53.0" prefWidth="107.0" text="Visualizar">
+      <Button fx:id="btnShowValue" layoutX="550.0" layoutY="86.0" mnemonicParsing="false" onAction="#totalValueShow" prefHeight="53.0" prefWidth="129.0" text="Visualizar">
          <font>
             <Font size="16.0" />
          </font>
       </Button>
       <Pane layoutY="523.0" prefHeight="30.0" prefWidth="1000.0" styleClass="title-back" />
       <Button layoutX="550.0" layoutY="433.0" mnemonicParsing="false" onAction="#onBtnShowHistory" prefHeight="53.0" prefWidth="129.0" text="Ver Historico">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Button>
+      <Button layoutX="695.0" layoutY="433.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="129.0" text="Em dev..">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Button>
+      <Button layoutX="842.0" layoutY="433.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="129.0" text="Em dev..">
          <font>
             <Font size="16.0" />
          </font>
