@@ -1,7 +1,6 @@
 package view;
 
 import config.DbIntegrityException;
-import java.io.IOException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
@@ -77,7 +76,7 @@ public class CreditCardViewController implements Initializable {
         } else {
             try {
                 Instant instant = txtDate.getValue().atStartOfDay().atZone(ZoneId.systemDefault()).toInstant();
-                Card obj = new Card(null, Date.from(instant), Double.valueOf(txtValue.getText()));
+                Card obj = new Card(null, Date.from(instant), Utils.formatNumber(txtValue.getText()));
                 service.saveOrUpdate(obj);
                 updateTableView();
             } catch (RuntimeException e)  {

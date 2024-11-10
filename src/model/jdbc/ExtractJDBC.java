@@ -11,20 +11,20 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import javafx.scene.control.Alert;
-import model.dao.HistoryDao;
-import model.entities.History;
+import model.entities.Extract;
 import view.util.Alerts;
+import model.dao.ExtractDao;
 
-public class HistoryJDBC implements HistoryDao{
+public class ExtractJDBC implements ExtractDao{
 
     private Connection conn;
     
-    public HistoryJDBC(Connection conn) {
+    public ExtractJDBC(Connection conn) {
         this.conn = conn;
     }
     
     @Override
-    public void insert(History obj) {
+    public void insert(Extract obj) {
         PreparedStatement st = null;
         try {
             st = conn.prepareStatement("INSERT INTO tb_history(data_list, date_save) VALUES (?, ?)",Statement.RETURN_GENERATED_KEYS);
@@ -58,16 +58,16 @@ public class HistoryJDBC implements HistoryDao{
     }
 
     @Override
-    public List<History> findAll() {
+    public List<Extract> findAll() {
         PreparedStatement st = null;
         ResultSet rs = null;
         try {
             st = conn.prepareStatement("SELECT * FROM tb_history");
             rs = st.executeQuery();
             
-            List<History> list = new ArrayList<>();
+            List<Extract> list = new ArrayList<>();
             while (rs.next()) {
-                History history = new History(rs.getInt("id"),rs.getString("data_list"),rs.getDate("date_save"));
+                Extract history = new Extract(rs.getInt("id"),rs.getString("data_list"),rs.getDate("date_save"));
                 list.add(history);
             }
             return list;

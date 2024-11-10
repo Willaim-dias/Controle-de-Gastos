@@ -3,25 +3,25 @@ package model.services;
 import java.util.List;
 import model.dao.AccountDao;
 import model.dao.DaoFactory;
-import model.dao.HistoryDao;
 import model.entities.Account;
-import model.entities.History;
+import model.entities.Extract;
+import model.dao.ExtractDao;
 
-public class HistoryServices {
+public class ExtractServices {
     
-    private HistoryDao dao = DaoFactory.createHistoryDao();
+    private ExtractDao dao = DaoFactory.createHistoryDao();
     
-    public List<History> findAll() {
+    public List<Extract> findAll() {
         return dao.findAll();
     }
     
-    public void save(History obj) {
+    public void save(Extract obj) {
         if (obj.getId() == null) {
             dao.insert(obj);
         } 
     }
     
-    public void remove(History obj) {
+    public void remove(Extract obj) {
         dao.deleteById(obj.getId());
     }
 

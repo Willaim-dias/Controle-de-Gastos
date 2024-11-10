@@ -2,16 +2,16 @@ package model.entities;
 
 import java.util.Date;
 
-public class History {
+public class Extract {
     
     private Integer id;
     private String DataList;
     private Date date;
 
-    public History() {
+    public Extract() {
     }
 
-    public History(Integer id, String DataList, Date date) {
+    public Extract(Integer id, String DataList, Date date) {
         this.id = id;
         this.DataList = DataList;
         this.date = date;

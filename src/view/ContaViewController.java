@@ -3,7 +3,6 @@ package view;
 import config.DbIntegrityException;
 import java.io.IOException;
 import java.net.URL;
-import java.text.DecimalFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -28,9 +27,9 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.entities.Account;
-import model.entities.History;
+import model.entities.Extract;
 import model.services.AccountServices;
-import model.services.HistoryServices;
+import model.services.ExtractServices;
 import view.listeners.DataChangeListener;
 import view.util.Alerts;
 import view.util.Utils;
@@ -85,7 +84,7 @@ public class ContaViewController extends DataChangeListener implements Initializ
         } else {
             txtAccount.setStyle("-fx-border-color: none;");
             txtValue.setStyle("-fx-border-color: none;");
-            Account obj = new Account(null, txtAccount.getText(), Double.valueOf(txtValue.getText()));
+            Account obj = new Account(null, txtAccount.getText(), Utils.formatNumber(txtValue.getText()));
             service.saveOrUpdate(obj);
             updateTableView();
         }
@@ -131,18 +130,21 @@ public class ContaViewController extends DataChangeListener implements Initializ
         }
     }
 
-    public void onBtSaveHistory() {
-        HistoryServices historyServices = new HistoryServices();
-        String dataList = "";
+    public void onBtSaveExtract() {
+        Optional<ButtonType> result = Alerts.showConfirmation("Confi","Salvar gastos?");
+        if (ButtonType.OK == result.get()) {
+            ExtractServices ExtractServices = new ExtractServices();
+            String dataList = "";
 
-        for (Account a : obsList) {
-            dataList += a.getAccount() + ";" + a.getValue() + ":";
-        }
-        if (!dataList.equals("")) {
-            History history = new History(null, dataList, new Date());
-            historyServices.save(history);
-        } else {
-            Alerts.showAlert("Info", "", "Nao a dados para salvar", Alert.AlertType.INFORMATION);
+            for (Account a : obsList) {
+                dataList += a.getAccount() + ";" + a.getValue() + ":";
+            }
+            if (!dataList.equals("")) {
+                Extract history = new Extract(null, dataList, new Date());
+                ExtractServices.save(history);
+            } else {
+                Alerts.showAlert("Info", "", "Nao a dados para salvar", Alert.AlertType.INFORMATION);
+            }
         }
     }
 

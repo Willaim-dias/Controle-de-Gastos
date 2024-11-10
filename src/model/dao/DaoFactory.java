@@ -3,7 +3,7 @@ package model.dao;
 import config.DB;
 import model.jdbc.AccountJDBC;
 import model.jdbc.CardJDBC;
-import model.jdbc.HistoryJDBC;
+import model.jdbc.ExtractJDBC;
 
 
 public class DaoFactory {
@@ -16,7 +16,7 @@ public class DaoFactory {
         return new CardJDBC(DB.getConnection());
     }
     
-    public static HistoryDao createHistoryDao() {
-        return new HistoryJDBC(DB.getConnection());
+    public static ExtractDao createHistoryDao() {
+        return new ExtractJDBC(DB.getConnection());
     }
 }

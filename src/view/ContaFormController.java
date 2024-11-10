@@ -86,7 +86,7 @@ public class ContaFormController implements Initializable {
 
         obj.setId(Utils.tryParseToInt(txtId.getText()));
         obj.setAccount(txtAccount.getText());
-        obj.setValue(Utils.tryParseToDouble(txtValue.getText()));
+        obj.setValue(Utils.formatNumber(txtValue.getText()));
               
         return obj;
     }

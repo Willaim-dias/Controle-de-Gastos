@@ -35,6 +35,15 @@ public class Utils {
         }
     }
     
+    public static Double formatNumber(String str) {
+        try {
+            String format = str.replaceAll("\\.","").replaceAll(",", ".");
+            return Double.valueOf(format);
+        } catch (NumberFormatException e) {
+            return null;
+        }
+    }
+    
     public static <T> void formatTableColumnDate(TableColumn<T, Date> tableColumn, String format) {
         tableColumn.setCellFactory(column -> {
             TableCell<T, Date> cell = new TableCell<T, Date>() {

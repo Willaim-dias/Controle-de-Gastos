@@ -23,25 +23,25 @@ import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import model.entities.History;
-import model.services.HistoryServices;
+import model.entities.Extract;
+import model.services.ExtractServices;
 import view.util.Alerts;
 
 public class SpendingHistoryViewController implements Initializable {
 
-    private final HistoryServices service = new HistoryServices();
+    private final ExtractServices service = new ExtractServices();
 
     @FXML
-    private TableView<History> tableDate;
+    private TableView<Extract> tableDate;
 
     @FXML
-    private TableColumn<History, Integer> columnId;
+    private TableColumn<Extract, Integer> columnId;
 
     @FXML
-    private TableColumn<History, Date> columnDate;
+    private TableColumn<Extract, Date> columnDate;
 
     @FXML
-    private TableColumn<History, History> columnRemo;
+    private TableColumn<Extract, Extract> columnRemo;
 
     @FXML
     private PieChart pieChartExpenses;
@@ -49,7 +49,7 @@ public class SpendingHistoryViewController implements Initializable {
     @FXML
     private Label labelSum;
 
-    private ObservableList<History> obsList;
+    private ObservableList<Extract> obsList;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -73,7 +73,7 @@ public class SpendingHistoryViewController implements Initializable {
             throw new IllegalStateException("Service was null");
         }
 
-        List<History> list = service.findAll();
+        List<Extract> list = service.findAll();
         obsList = FXCollections.observableArrayList(list);
         tableDate.setItems(obsList);
         initRemoveButtons();
@@ -81,7 +81,7 @@ public class SpendingHistoryViewController implements Initializable {
 
     private void initRemoveButtons() {
         columnRemo.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(param.getValue()));
-        columnRemo.setCellFactory(param -> new TableCell<History, History>() {
+        columnRemo.setCellFactory(param -> new TableCell<Extract, Extract>() {
             private final Button button = new Button("remover");
 
             {
@@ -90,7 +90,7 @@ public class SpendingHistoryViewController implements Initializable {
             }
 
             @Override
-            protected void updateItem(History obj, boolean empty) {
+            protected void updateItem(Extract obj, boolean empty) {
                 super.updateItem(obj, empty);
 
                 if (obj == null) {
@@ -104,7 +104,7 @@ public class SpendingHistoryViewController implements Initializable {
         });
     }
 
-    private void removeEntity(History obj) {
+    private void removeEntity(Extract obj) {
         Optional<ButtonType> result = Alerts.showConfirmation("Confirmação", "Tem certeza de que deseja excluir?");
         if (result.get() == ButtonType.OK) {
             if (service == null) {
@@ -119,9 +119,9 @@ public class SpendingHistoryViewController implements Initializable {
         }
     }
 
-    private void addDataGraphic(History id) {
+    private void addDataGraphic(Extract id) {
         // Encontra o objeto 'History' correspondente
-        History targetHistory = obsList.stream().filter(history -> id.getId().equals(history.getId())).findFirst().orElse(null);
+        Extract targetHistory = obsList.stream().filter(history -> id.getId().equals(history.getId())).findFirst().orElse(null);
 
         if (targetHistory != null) {
             // Converte a lista de dados em objetos PieChart.Data
