@@ -47,8 +47,8 @@
                   <Font size="16.0" />
                </font>
             </Label>
-            <TextField fx:id="txtValue" prefHeight="32.0" prefWidth="167.0" GridPane.rowIndex="1" />
-            <DatePicker fx:id="txtDate" prefHeight="32.0" prefWidth="142.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <TextField fx:id="txtValue" prefHeight="32.0" prefWidth="167.0" promptText="00,00" GridPane.rowIndex="1" />
+            <DatePicker fx:id="txtDate" prefHeight="32.0" prefWidth="142.0" promptText="00/00/0000" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>

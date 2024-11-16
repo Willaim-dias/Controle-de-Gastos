@@ -9,7 +9,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.layout.AnchorPane;
 
-public class MainViewController implements Initializable {
+public class HomeViewController implements Initializable {
 
     @FXML
     private AnchorPane panelGeneral;

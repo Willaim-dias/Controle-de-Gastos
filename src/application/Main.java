@@ -5,6 +5,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 public class Main extends Application {
@@ -14,16 +15,16 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/MainView.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/LoginView.fxml"));
             AnchorPane anchorPane = loader.load();
     
             mainScene = new Scene(anchorPane);
             primaryStage.setScene(mainScene);
             primaryStage.setResizable(false);
-            primaryStage.setTitle("Controle de Gastos");
+            primaryStage.setTitle("Login");
             primaryStage.show();
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("Erro: "+ e.getMessage());
         }
     }
 

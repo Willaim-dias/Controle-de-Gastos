@@ -2,7 +2,7 @@
 
 O objetivo principal deste programa é facilitar o controle de gastos, tornando-o mais simples e acessível. Ele oferece automação em alguns processos, como a soma total no final do mês e uma visualização gráfica dos gastos por meio de um gráfico de pizza, tornando mais fácil identificar onde estão os maiores gastos.
 
-<img src="Capturar.png" height="400" alt="img aplicação em execução"/>
+<img src="documentacao/Capturar.png" height="400" alt="img aplicação em execução"/>
 
 ## Bibliotecas Utilizadas
 logback: Ferramenta de registro (logging) em Java, utilizada para gerar logs de maneira flexível e eficiente.
