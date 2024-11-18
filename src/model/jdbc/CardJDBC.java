@@ -12,11 +12,13 @@ import java.util.List;
 import javafx.scene.control.Alert;
 import model.dao.CardDao;
 import model.entities.Card;
+import view.CodeUserTemp;
 import view.util.Alerts;
 
 public class CardJDBC implements CardDao{
     
     private Connection conn;
+    private final String codeUser = CodeUserTemp.getCode();
     
     public CardJDBC(Connection conn) {
         this.conn = conn;
@@ -26,7 +28,8 @@ public class CardJDBC implements CardDao{
     public void insert(Card obj) {
         PreparedStatement st = null;
         try {
-            st = conn.prepareStatement("INSERT INTO tb_card (value,date) VALUES (?,?)",Statement.RETURN_GENERATED_KEYS);
+            String query = String.format("INSERT INTO tb_card_%s (value,date) VALUES (?,?)", codeUser);
+            st = conn.prepareStatement(query,Statement.RETURN_GENERATED_KEYS);
             st.setDouble(1, obj.getValue());
             st.setDate(2, new java.sql.Date(obj.getDate().getTime()));
              
@@ -43,11 +46,12 @@ public class CardJDBC implements CardDao{
     public void update(Card obj) {
         PreparedStatement st = null;
         try {
-            st = conn.prepareStatement("UPDATE tb_card SET value = ?,date = ?, WHERE id = ?",Statement.RETURN_GENERATED_KEYS);      
+            String query = String.format("UPDATE tb_card_%s SET value = ?,date = ?, WHERE id = ?", codeUser);
+            st = conn.prepareStatement(query,Statement.RETURN_GENERATED_KEYS);      
             st.setDouble(1, obj.getValue());
             //st.setDate(2, (Date) obj.getDate());
             st.setInt(3, obj.getId());
-            int rowsAffected = st.executeUpdate();
+            st.executeUpdate();
         } catch (SQLException e) {
             throw new DbException(e.getMessage());
         } finally {
@@ -59,7 +63,8 @@ public class CardJDBC implements CardDao{
     public void deleteById(Integer id) {
         PreparedStatement st = null;
         try {
-            st = conn.prepareStatement("DELETE FROM tb_card WHERE id = ?");
+            String query = String.format("DELETE FROM tb_card_%s WHERE id = ?", codeUser);
+            st = conn.prepareStatement(query);
             st.setInt(1, id);
             st.executeUpdate();
         } catch(SQLException e) {
@@ -74,7 +79,8 @@ public class CardJDBC implements CardDao{
         PreparedStatement st = null;
         ResultSet rs = null;
         try {
-            st = conn.prepareStatement("SELECT * FROM tb_card");
+            String query = String.format("SELECT * FROM tb_card_%s", codeUser);
+            st = conn.prepareStatement(query);
             rs = st.executeQuery();
             
             List<Card> list = new ArrayList<>();

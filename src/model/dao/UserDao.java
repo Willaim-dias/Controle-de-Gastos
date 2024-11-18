@@ -4,8 +4,8 @@ import model.entities.User;
 
 public interface UserDao {
     
-    void insert(User obj);
+    boolean insert(User obj);
     void update(User obj);
-    void deleteById(Integer id);
-    User findById(Integer id);
+    void deleteById(String codeUser);
+    User findById(String userName);
 }

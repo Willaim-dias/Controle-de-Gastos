@@ -14,6 +14,12 @@ public class User {
         this.codeUser = codeUser;
     }
 
+    public User(String userName, String password, String codeUser) {
+        this.userName = userName;
+        this.password = password;
+        this.codeUser = codeUser;
+    }
+    
     public Integer getId() {
         return id;
     }

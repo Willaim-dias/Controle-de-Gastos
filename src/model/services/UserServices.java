@@ -6,22 +6,25 @@ import model.entities.User;
 
 public class UserServices {
     
-    private UserDao dao = DaoFactory.CreateUserDao();
+    private final UserDao dao = DaoFactory.CreateUserDao();
     
-    public User findById(int id) {
-        return dao.findById(id);
+    public User findById(String userName) {
+        return dao.findById(userName);
     }
     
-    public void saveOrUpdate(User obj) {
+    public boolean saveOrUpdate(User obj) {
         if (obj.getId() == null) {
-            dao.insert(obj);
+             return dao.insert(obj);
         } else {
             dao.update(obj);
         }
+        return false;
     }
     
     public void remove(User obj) {
-        dao.deleteById(obj.getId());
+        dao.deleteById(obj.getCodeUser());
     }
+    
+    
     
 }
