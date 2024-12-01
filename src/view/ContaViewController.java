@@ -75,15 +75,8 @@ public class ContaViewController extends DataChangeListener implements Initializ
 
     public void onBtnSaveAccount() {
         if (txtAccount.getText().equals("") || txtValue.getText().equals("")) {
-            if (txtAccount.getText().equals("")) {
-                txtAccount.setStyle("-fx-border-color: red;");
-            } else {
-                txtAccount.setStyle("-fx-border-color: none;");
-                txtValue.setStyle("-fx-border-color: red;");
-            }
+            Alerts.showAlert("Info", "", "Preencha ambos os campos", Alert.AlertType.INFORMATION);
         } else {
-            txtAccount.setStyle("-fx-border-color: none;");
-            txtValue.setStyle("-fx-border-color: none;");
             Account obj = new Account(null, txtAccount.getText(), Utils.formatNumber(txtValue.getText()));
             service.saveOrUpdate(obj);
             updateTableView();

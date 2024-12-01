@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="572.0" prefWidth="1000.0" stylesheets="@styles/MainStyle.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.GraphicsViewController">
+<AnchorPane id="AnchorPane" prefHeight="572.0" prefWidth="1000.0" stylesheets="@styles/MainStyle.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.GraphicsViewController">
    <children>
       <PieChart fx:id="pieChartExpenses" layoutX="14.0" layoutY="86.0" styleClass="border-bar" />
       <Label alignment="CENTER" layoutY="14.0" prefHeight="53.0" prefWidth="251.0" styleClass="title-back" text="Menu" textFill="WHITE">
@@ -26,17 +26,17 @@
          </font>
       </Button>
       <Pane layoutY="523.0" prefHeight="30.0" prefWidth="1000.0" styleClass="title-back" />
-      <Button layoutX="550.0" layoutY="433.0" mnemonicParsing="false" onAction="#onBtnShowHistory" prefHeight="53.0" prefWidth="129.0" text="Ver Historico">
+      <Button layoutX="550.0" layoutY="203.0" mnemonicParsing="false" onAction="#onBtnShowHistory" prefHeight="53.0" prefWidth="251.0" text="Histórico de Gastos">
          <font>
             <Font size="16.0" />
          </font>
       </Button>
-      <Button layoutX="695.0" layoutY="433.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="129.0" text="Em dev..">
+      <Button layoutX="550.0" layoutY="271.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="129.0" text="Em dev..">
          <font>
             <Font size="16.0" />
          </font>
       </Button>
-      <Button layoutX="842.0" layoutY="433.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="129.0" text="Em dev..">
+      <Button layoutX="550.0" layoutY="340.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="129.0" text="Em dev..">
          <font>
             <Font size="16.0" />
          </font>

@@ -1,10 +1,10 @@
 package view;
 
-public class CodeUserTemp {
+public class DataTemp {
     
     private static String code;
 
-    public CodeUserTemp() {
+    public DataTemp() {
     }
     
     public static String getCode() {
@@ -12,6 +12,6 @@ public class CodeUserTemp {
     }
     
     public static void setCode(String code) {
-       CodeUserTemp.code = code;
+       DataTemp.code = code;
     }
 }

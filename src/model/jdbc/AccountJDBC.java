@@ -12,13 +12,13 @@ import java.util.List;
 import javafx.scene.control.Alert;
 import model.dao.AccountDao;
 import model.entities.Account;
-import view.CodeUserTemp;
+import view.DataTemp;
 import view.util.Alerts;
 
 public class AccountJDBC implements AccountDao{
     
     private Connection conn;
-    private final String codeUser = CodeUserTemp.getCode();
+    private final String codeUser = DataTemp.getCode();
     
     public AccountJDBC(Connection conn) {
         this.conn = conn;

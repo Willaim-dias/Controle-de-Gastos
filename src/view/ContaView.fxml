@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<Pane fx:id="panelAccount" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="574.0" prefWidth="1000.0" stylesheets="@styles/MainStyle.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.ContaViewController">
+<Pane fx:id="panelAccount" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="574.0" prefWidth="1000.0" stylesheets="@styles/MainStyle.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.ContaViewController">
    <children>
       <GridPane layoutX="14.0" layoutY="73.0" prefHeight="90.0" prefWidth="559.0">
         <columnConstraints>
@@ -67,13 +67,13 @@
             </Label>
          </children>
       </GridPane>
-      <TableView fx:id="tableAccount" layoutX="14.0" layoutY="194.0" prefHeight="315.0" prefWidth="559.0">
+      <TableView fx:id="tableAccount" layoutX="14.0" layoutY="194.0" prefHeight="315.0" prefWidth="580.0">
         <columns>
             <TableColumn fx:id="columnId" prefWidth="75.0" text="id" />
           <TableColumn fx:id="conlumnAccount" prefWidth="162.0" text="Conta" />
           <TableColumn fx:id="columnValue" minWidth="5.0" prefWidth="115.0" text="Valor" />
             <TableColumn fx:id="columnEdi" prefWidth="106.0" />
-            <TableColumn fx:id="columnRemo" prefWidth="97.0" />
+            <TableColumn fx:id="columnRemo" prefWidth="104.0" />
         </columns>
       </TableView>
       <Label fx:id="labelResult" alignment="CENTER" layoutX="632.0" layoutY="374.0" prefHeight="62.0" prefWidth="315.0" styleClass="border-bar">

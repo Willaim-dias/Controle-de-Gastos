@@ -12,13 +12,13 @@ import java.util.List;
 import javafx.scene.control.Alert;
 import model.dao.CardDao;
 import model.entities.Card;
-import view.CodeUserTemp;
+import view.DataTemp;
 import view.util.Alerts;
 
 public class CardJDBC implements CardDao{
     
     private Connection conn;
-    private final String codeUser = CodeUserTemp.getCode();
+    private final String codeUser = DataTemp.getCode();
     
     public CardJDBC(Connection conn) {
         this.conn = conn;

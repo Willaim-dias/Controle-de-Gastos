@@ -54,11 +54,15 @@ public class LoginViewController implements Initializable {
             labelMenssage.setText("Preencha ambos os campos");
             labelMenssage.setStyle("-fx-text-fill: red;");
         } else {
+            labelMenssage.setText("");
             User user = services.findById(txtUser.getText());
-            CodeUserTemp.setCode(user.getCodeUser());
+            DataTemp.setCode(user.getCodeUser());
             if (Utils.validation(Utils.hashPassword(txtPassword.getText()), user.getPassword())) {
+                Utils.currentStage(event).close();
                 showScreen("/view/HomeView.fxml", "Home");
-
+            } else {
+                labelMenssage.setText("Senha ou Usuario incorreto.");
+                labelMenssage.setStyle("-fx-text-fill: red;");
             }
         }
 

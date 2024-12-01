@@ -11,7 +11,6 @@ import javafx.beans.binding.Bindings;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.PieChart;
@@ -120,24 +119,21 @@ public class SpendingHistoryViewController implements Initializable {
     }
 
     private void addDataGraphic(Extract id) {
-        // Encontra o objeto 'History' correspondente
         Extract targetHistory = obsList.stream().filter(history -> id.getId().equals(history.getId())).findFirst().orElse(null);
 
         if (targetHistory != null) {
-            // Converte a lista de dados em objetos PieChart.Data
             ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList();
 
             Arrays.stream(targetHistory.getDataList().split(":"))
                     .map(entry -> entry.split(";"))
-                    .filter(parts -> parts.length == 2) // Garante que os dados estejam no formato esperado
+                    .filter(parts -> parts.length == 2)
                     .forEach(parts -> pieChartData.add(new PieChart.Data(parts[0], Double.parseDouble(parts[1]))));
 
-            // Atualiza a exibição do gráfico com os dados
             pieChartData.forEach(data -> data.nameProperty().bind(
                     Bindings.concat(data.getName(), ": ", data.pieValueProperty())
             ));
 
-            pieChartExpenses.getData().setAll(pieChartData); // Define todos os dados de uma vez
+            pieChartExpenses.getData().setAll(pieChartData);
         }
     }
 

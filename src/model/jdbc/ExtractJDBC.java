@@ -14,12 +14,12 @@ import javafx.scene.control.Alert;
 import model.entities.Extract;
 import view.util.Alerts;
 import model.dao.ExtractDao;
-import view.CodeUserTemp;
+import view.DataTemp;
 
 public class ExtractJDBC implements ExtractDao{
 
     private Connection conn;
-    private final String codeUser = CodeUserTemp.getCode();
+    private final String codeUser = DataTemp.getCode();
     
     public ExtractJDBC(Connection conn) {
         this.conn = conn;
