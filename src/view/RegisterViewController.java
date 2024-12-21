@@ -1,17 +1,24 @@
 package view;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import model.entities.User;
 import model.services.UserServices;
+import view.util.Alerts;
 import view.util.Utils;
 
 public class RegisterViewController implements Initializable {
@@ -42,7 +49,7 @@ public class RegisterViewController implements Initializable {
 
     @FXML
     public void onBtnExiet(ActionEvent event) {
-       Utils.currentStage(event).close(); 
+       Utils.currentStage(event).close();
     }
     
     @FXML

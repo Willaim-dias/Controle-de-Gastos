@@ -109,8 +109,8 @@ public class ContaViewController extends DataChangeListener implements Initializ
                 String[] partes = labelTotal.getText().split("Total: R\\$");
 
                 double tolaSum = Double.parseDouble(partes[1].replace(",", "."));
-                double income = Double.parseDouble(txtIncome.getText());
-                double sum = (tolaSum - income);
+                double income = Double.parseDouble(txtIncome.getText().replace(",", "."));
+                double sum = (income - tolaSum);
 
                 if (tolaSum <= 0) {
                     labelResult.setText("00.00");

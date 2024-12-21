@@ -93,7 +93,7 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <TextField fx:id="txtIncome" prefHeight="38.0" prefWidth="230.0">
+            <TextField fx:id="txtIncome" prefHeight="38.0" prefWidth="230.0" promptText="Adicione o valor da sua remda">
                <GridPane.margin>
                   <Insets right="5.0" />
                </GridPane.margin>
@@ -105,11 +105,6 @@
             </Button>
          </children>
       </GridPane>
-      <Label layoutX="632.0" layoutY="173.0" prefHeight="38.0" prefWidth="315.0" text="Adicione o valor da sua remda">
-         <font>
-            <Font size="16.0" />
-         </font>
-      </Label>
       <Label alignment="CENTER" layoutY="14.0" prefHeight="53.0" prefWidth="251.0" styleClass="title-back" text="Contas" textFill="WHITE">
          <font>
             <Font size="36.0" />

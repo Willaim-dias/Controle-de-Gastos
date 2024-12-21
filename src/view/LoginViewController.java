@@ -70,7 +70,7 @@ public class LoginViewController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+       
     }
 
     private void showScreen(String path, String title) {
