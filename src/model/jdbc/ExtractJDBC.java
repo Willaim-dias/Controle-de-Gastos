@@ -3,7 +3,6 @@ package model.jdbc;
 import config.DB;
 import config.DbException;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -14,12 +13,10 @@ import javafx.scene.control.Alert;
 import model.entities.Extract;
 import view.util.Alerts;
 import model.dao.ExtractDao;
-import view.DataTemp;
 
 public class ExtractJDBC implements ExtractDao{
 
     private Connection conn;
-    private final String codeUser = DataTemp.getCode();
     
     public ExtractJDBC(Connection conn) {
         this.conn = conn;
@@ -29,8 +26,7 @@ public class ExtractJDBC implements ExtractDao{
     public void insert(Extract obj) {
         PreparedStatement st = null;
         try {
-            String query = String.format("INSERT INTO tb_history_%s(data_list, date_save) VALUES (?, ?)", codeUser);
-            st = conn.prepareStatement(query,Statement.RETURN_GENERATED_KEYS);
+            st = conn.prepareStatement("INSERT INTO tb_history (data_list, date_save) VALUES (?, ?)",Statement.RETURN_GENERATED_KEYS);
             st.setString(1, obj.getDataList());
             st.setDate(2, new java.sql.Date(obj.getDate().getTime()));
             
@@ -50,8 +46,7 @@ public class ExtractJDBC implements ExtractDao{
     public void deleteById(Integer id) {
         PreparedStatement st = null;
         try {
-            String query = String.format("DELETE FROM tb_history_%s WHERE id = ?", codeUser);
-            st = conn.prepareStatement(query);
+            st = conn.prepareStatement("DELETE FROM tb_history WHERE id = ?");
             st.setInt(1, id);
             st.executeUpdate();
         } catch(SQLException e) {
@@ -66,8 +61,7 @@ public class ExtractJDBC implements ExtractDao{
         PreparedStatement st = null;
         ResultSet rs = null;
         try {
-            String query = String.format("SELECT * FROM tb_history_%s", codeUser);
-            st = conn.prepareStatement(query);
+            st = conn.prepareStatement("SELECT * FROM tb_history");
             rs = st.executeQuery();
             
             List<Extract> list = new ArrayList<>();

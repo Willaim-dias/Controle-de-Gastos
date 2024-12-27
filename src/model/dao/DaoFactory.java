@@ -4,15 +4,9 @@ import config.DB;
 import model.jdbc.AccountJDBC;
 import model.jdbc.CardJDBC;
 import model.jdbc.ExtractJDBC;
-import model.jdbc.UserJDBC;
-
 
 public class DaoFactory {
-    
-    public static UserDao CreateUserDao() {
-        return new UserJDBC(DB.getConnection());
-    }
-    
+        
     public static AccountDao createAccountDao() {
         return new AccountJDBC(DB.getConnection());
     }

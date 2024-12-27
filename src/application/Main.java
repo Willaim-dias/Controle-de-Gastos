@@ -14,13 +14,13 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/LoginView.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/HomeView.fxml"));
             AnchorPane anchorPane = loader.load();
     
             mainScene = new Scene(anchorPane);
             primaryStage.setScene(mainScene);
             primaryStage.setResizable(false);
-            primaryStage.setTitle("Login");
+            primaryStage.setTitle("Home");
             primaryStage.show();
         } catch (IOException e) {
             System.out.println("Erro: "+ e.getMessage());
