@@ -13,7 +13,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
@@ -33,25 +32,14 @@ public class GraphicsViewController implements Initializable {
     @FXML
     private PieChart pieChartExpenses;
 
-    @FXML
-    private Button btnShowValue;
-
-    public void onBtnShowHistory() {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/SpendingHistoryView.fxml"));
-            AnchorPane anchorPane = loader.load();
-            
-            Stage dialogStage = new Stage();
-            dialogStage.setTitle("Historico de Gastos");
-            dialogStage.setScene(new Scene(anchorPane));
-            dialogStage.setResizable(false);
-            dialogStage.initModality(Modality.WINDOW_MODAL);
-            dialogStage.showAndWait();
-        } catch (IOException e) {
-            Alerts.showAlert("IO Exception", "Error loading view", e.getMessage(), Alert.AlertType.ERROR);
-        }
+    public void onBtShowHistory() {
+        showWindow("/view/SpendingHistoryView.fxml","Historico de Gastos");
     }
 
+    public void onBtShowSpendingForecast() {
+        showWindow("/view/SpendingForecast.fxml","Previsao de Gastos");
+    }
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         addDataGraphic();
@@ -87,4 +75,21 @@ public class GraphicsViewController implements Initializable {
 
         pieChartExpenses.getData().addAll(pieCharData);
     }
+    
+    private void showWindow(String path,String title) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(path));
+            AnchorPane anchorPane = loader.load();
+            
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle(title);
+            dialogStage.setScene(new Scene(anchorPane));
+            dialogStage.setResizable(false);
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.showAndWait();
+        } catch (IOException e) {
+            Alerts.showAlert("IO Exception", "Error loading view", e.getMessage(), Alert.AlertType.ERROR);
+        }
+    }
+    
 }

@@ -76,11 +76,11 @@
             <TableColumn fx:id="columnRemo" prefWidth="104.0" />
         </columns>
       </TableView>
-      <Label fx:id="labelResult" alignment="CENTER" layoutX="632.0" layoutY="374.0" prefHeight="62.0" prefWidth="315.0" styleClass="border-bar">
+      <Label fx:id="labelResult" alignment="CENTER" layoutX="632.0" layoutY="374.0" prefHeight="62.0" prefWidth="315.0" styleClass="border">
          <font>
             <Font size="25.0" />
          </font></Label>
-      <Label fx:id="labelTotal" alignment="CENTER" layoutX="632.0" layoutY="287.0" prefHeight="62.0" prefWidth="315.0" styleClass="border-bar">
+      <Label fx:id="labelTotal" alignment="CENTER" layoutX="632.0" layoutY="287.0" prefHeight="62.0" prefWidth="315.0" styleClass="border">
          <font>
             <Font size="25.0" />
          </font></Label>

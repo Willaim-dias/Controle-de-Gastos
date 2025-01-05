@@ -1,5 +1,9 @@
 
-.border-bar {
+.menu-bar {
+    -fx-font-size: 14px;
+}
+
+.border {
     -fx-border-color: #000;
     -fx-border-radius: 5px;
 }

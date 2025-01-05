@@ -16,7 +16,7 @@ SQLite é um sistema de gerenciamento de banco de dados relacional leve e autoss
 
 ## Como Executar o Projeto
 
-1. **Crie um novo projeto JavaFx**: Use a IDE de sua escolha.
+1. **Crie um novo projeto Java**: Use a IDE de sua escolha.
 2. **Substitua a pasta `src`**: Navegue até a pasta `src` do seu projeto e substitua-a pelo `src` deste repositório.
 3. **Compile e execute o código**.
 4. **Bibliotecas**: Certifique-se de baixar as bibliotecas necessárias.
