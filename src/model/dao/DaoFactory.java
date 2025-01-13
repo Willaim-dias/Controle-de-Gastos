@@ -4,6 +4,7 @@ import config.DB;
 import model.jdbc.AccountJDBC;
 import model.jdbc.CardJDBC;
 import model.jdbc.ExtractJDBC;
+import model.jdbc.InstallmentsJDBC;
 
 public class DaoFactory {
         
@@ -17,5 +18,9 @@ public class DaoFactory {
     
     public static ExtractDao createHistoryDao() {
         return new ExtractJDBC(DB.getConnection());
+    }
+    
+    public static InstallmentsDao createInstallmentsDao() {
+        return new InstallmentsJDBC(DB.getConnection());
     }
 }

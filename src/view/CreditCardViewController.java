@@ -36,7 +36,7 @@ import view.util.Utils;
 
 public class CreditCardViewController implements Initializable {
 
-    private final CardServices service = new CardServices();
+    private CardServices service;
 
     @FXML
     private TextField txtValue;
@@ -70,6 +70,10 @@ public class CreditCardViewController implements Initializable {
 
     private ObservableList<Card> obsList;
 
+    public void setCardServices(CardServices services) {
+        this.service = services;
+    }
+    
     public void onBtnSaveAccount(ActionEvent event) {
         if (txtValue.getText().equals("") && txtDate.getValue() == null) {
             Alerts.showAlert("Info", "", "Preencha ambos os campos", Alert.AlertType.INFORMATION);
@@ -85,7 +89,8 @@ public class CreditCardViewController implements Initializable {
         }
     }
 
-    public void updateListView() {
+    @FXML
+    private void updateListView() {
         double sum = 0;
         listFilter.getItems().clear();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy");
@@ -123,7 +128,6 @@ public class CreditCardViewController implements Initializable {
         columnValue.setCellValueFactory(new PropertyValueFactory<>("value"));
         columnDate.setCellValueFactory(new PropertyValueFactory<>("date"));
         Utils.formatTableColumnDate(columnDate, "dd/MM/yyyy");
-        updateTableView();
     }
 
     private void initRemoveButtons() {

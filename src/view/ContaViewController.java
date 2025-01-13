@@ -36,8 +36,8 @@ import view.util.Utils;
 
 public class ContaViewController extends DataChangeListener implements Initializable {
 
-    private final AccountServices service = new AccountServices();
-
+    private AccountServices service;
+    
     @FXML
     private TextField txtAccount;
 
@@ -73,7 +73,11 @@ public class ContaViewController extends DataChangeListener implements Initializ
 
     private ObservableList<Account> obsList;
 
-    public void onBtnSaveAccount() {
+    public void setAccountServices(AccountServices services) {
+        this.service = services;
+    }
+    
+    public void onBtSaveAccount() {
         if (txtAccount.getText().equals("") || txtValue.getText().equals("")) {
             Alerts.showAlert("Info", "", "Preencha ambos os campos", Alert.AlertType.INFORMATION);
         } else {
@@ -83,7 +87,7 @@ public class ContaViewController extends DataChangeListener implements Initializ
         }
     }
 
-    public void onBtnShowHistory() {
+    public void onBtShowHistory() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/SpendingHistoryView.fxml"));
             AnchorPane anchorPane = loader.load();
@@ -99,7 +103,7 @@ public class ContaViewController extends DataChangeListener implements Initializ
         }
     }
 
-    public void onBtnRemainingValue() {
+    public void onBtRemainingValue() {
         if (txtIncome.getText().equals("")) {
             txtIncome.setStyle("-fx-border-color: red;");
         } else if (labelTotal.getText().equals("")) {
@@ -163,7 +167,6 @@ public class ContaViewController extends DataChangeListener implements Initializ
         columnId.setCellValueFactory(new PropertyValueFactory<>("id"));
         conlumnAccount.setCellValueFactory(new PropertyValueFactory<>("account"));
         columnValue.setCellValueFactory(new PropertyValueFactory<>("value"));
-        updateTableView();
     }
 
     private void createDialogForm(Account obj, String absoluteName, Stage parentStage) {

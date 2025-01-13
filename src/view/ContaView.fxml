@@ -44,7 +44,7 @@
                   <Font size="16.0" />
                </font>
             </TextField>
-            <Button fx:id="btnSave" mnemonicParsing="false" onAction="#onBtnSaveAccount" prefHeight="32.0" prefWidth="165.0" text="Salvar" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+            <Button fx:id="btnSave" mnemonicParsing="false" onAction="#onBtSaveAccount" prefHeight="32.0" prefWidth="165.0" text="Salvar" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                <GridPane.margin>
                   <Insets />
                </GridPane.margin>
@@ -98,7 +98,7 @@
                   <Insets right="5.0" />
                </GridPane.margin>
             </TextField>
-            <Button fx:id="btnCalc" mnemonicParsing="false" onAction="#onBtnRemainingValue" prefHeight="38.0" prefWidth="123.0" text="Calcular" GridPane.columnIndex="1">
+            <Button fx:id="btnCalc" mnemonicParsing="false" onAction="#onBtRemainingValue" prefHeight="38.0" prefWidth="123.0" text="Calcular" GridPane.columnIndex="1">
                <font>
                   <Font size="16.0" />
                </font>
@@ -116,7 +116,7 @@
             <Font size="16.0" />
          </font>
       </Button>
-      <Button fx:id="btnOpenHistory" layoutX="807.0" layoutY="456.0" mnemonicParsing="false" onAction="#onBtnShowHistory" prefHeight="53.0" prefWidth="140.0" text="Ver historico">
+      <Button fx:id="btnOpenHistory" layoutX="807.0" layoutY="456.0" mnemonicParsing="false" onAction="#onBtShowHistory" prefHeight="53.0" prefWidth="140.0" text="Ver historico">
          <font>
             <Font size="16.0" />
          </font>

@@ -82,8 +82,7 @@ public class AccountJDBC implements AccountDao{
             rs = st.executeQuery();
             
             List<Account> list = new ArrayList<>();
-            while (rs.next()) {
-                
+            while (rs.next()) {       
                 Account account = new Account(rs.getInt("id"),rs.getString("account"),rs.getDouble("value"));
                 list.add(account);
             }

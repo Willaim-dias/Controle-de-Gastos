@@ -23,7 +23,7 @@ import view.util.Alerts;
 
 public class GraphicsViewController implements Initializable {
 
-    private final AccountServices service = new AccountServices();
+    private AccountServices service;
     private Double sum = 0.0;
     
     @FXML
@@ -32,6 +32,11 @@ public class GraphicsViewController implements Initializable {
     @FXML
     private PieChart pieChartExpenses;
 
+    public void setAccountServices(AccountServices services) {
+        this.service = services;
+        addDataGraphic();
+    }
+    
     public void onBtShowHistory() {
         showWindow("/view/SpendingHistoryView.fxml","Historico de Gastos");
     }
@@ -42,12 +47,13 @@ public class GraphicsViewController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        addDataGraphic();
+        
     }
 
     private boolean showValue = false;
-
-    public void totalValueShow() {
+    
+    @FXML
+    private void totalValueShow() {
         if (showValue) {
             labelValue.setText("");
             showValue = false;
@@ -56,8 +62,12 @@ public class GraphicsViewController implements Initializable {
             showValue = true;
         }
     }
-
+    
     private void addDataGraphic() {
+        if (service == null) {
+            throw new IllegalStateException("Service was not initialized");
+        }
+        
         List<Account> list = service.findAll();
 
         ObservableList<PieChart.Data> pieCharData = FXCollections.observableArrayList();
@@ -91,5 +101,5 @@ public class GraphicsViewController implements Initializable {
             Alerts.showAlert("IO Exception", "Error loading view", e.getMessage(), Alert.AlertType.ERROR);
         }
     }
-    
+
 }

@@ -12,16 +12,9 @@
             <Menu mnemonicParsing="false" text="Menu">
                <items>
                   <MenuItem mnemonicParsing="false" onAction="#onMenuItemGraphicsAction" text="Graficos" />
-                <Menu mnemonicParsing="false" text="Contas">
-                  <items>
-                    <MenuItem mnemonicParsing="false" onAction="#onMenuItemContaAction" text="Gastos do mes" />
-                  </items>
-                </Menu>
-                <Menu mnemonicParsing="false" text="Cartão">
-                  <items>
-                    <MenuItem mnemonicParsing="false" onAction="#onMenuItemCreditAction" text="Gastos por mes" />
-                  </items>
-                </Menu>
+              <MenuItem mnemonicParsing="false" onAction="#onMenuItemContaAction" text="Contas do mes" />
+                  <MenuItem mnemonicParsing="false" onAction="#onMenuItemInstallmentsAction" text="Items Parcelados" />
+              <MenuItem mnemonicParsing="false" onAction="#onMenuItemCreditAction" text="Historico d cartão" />
                </items>
             </Menu>
         </menus>

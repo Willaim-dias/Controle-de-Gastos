@@ -4,10 +4,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="800.0" stylesheets="@styles/MainStyle.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/23.0.1" fx:controller="view.SpendingForecastController">
+<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="800.0" stylesheets="@styles/MainStyle.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.SpendingForecastController">
    <children>
-      <Label alignment="CENTER" layoutY="22.0" prefHeight="53.0" prefWidth="320.0" styleClass="title-back" text="Previsão de Gastos" textFill="WHITE">
+      <Label alignment="CENTER" layoutY="22.0" prefHeight="53.0" prefWidth="335.0" styleClass="title-back" text="Previsão de Gastos" textFill="WHITE">
          <font>
             <Font size="36.0" />
          </font>
