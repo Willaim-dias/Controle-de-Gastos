@@ -37,8 +37,7 @@ public class Utils {
     
     public static Double formatNumber(String str) {
         try {
-            String format = str.replaceAll("\\.","").replaceAll(",", ".");
-            return Double.valueOf(format);
+            return Double.valueOf((str.contains(",")? str.replaceAll("\\.","").replaceAll(",", ".") : str));
         } catch (NumberFormatException e) {
             return null;
         }

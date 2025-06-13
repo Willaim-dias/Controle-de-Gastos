@@ -1,6 +1,7 @@
 package view;
 
 import config.DbIntegrityException;
+import java.io.File;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
@@ -31,9 +32,12 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.FileChooser;
 import model.entities.Card;
+import model.entities.Extract;
 import model.services.CardServices;
 import view.util.Alerts;
+import view.util.CreatePdf;
 import view.util.Utils;
 
 public class CreditCardViewController implements Initializable {
@@ -94,6 +98,25 @@ public class CreditCardViewController implements Initializable {
         }
     }
 
+    public void onBtHistory(ActionEvent event) {
+
+        List<Card> list = service.findAll();
+        
+        if (list != null) {
+            
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.setTitle("Salvar arquivo");
+            fileChooser.setInitialFileName("Historico cartao.pdf");
+            File url = fileChooser.showSaveDialog(Utils.currentStage(event));
+
+            Date date = new Date();
+
+            CreatePdf.createHistoryCard(list,date, url);
+        } else {
+            Alerts.showAlert("Info", "", "Selecione uma Linha", Alert.AlertType.INFORMATION);
+        }
+    }
+    
     public void updateListView() {
         double sum = 0;
         listFilter.getItems().clear();

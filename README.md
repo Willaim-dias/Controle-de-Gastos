@@ -1,8 +1,6 @@
 # Controle-de-Gastos
 
-<img src="documentacao/Capturar0.png" height="400" alt="img aplicação em execução"/>
-
-<img src="documentacao/Capturar1.png" height="400" alt="img aplicação em execução"/>
+<img src="documentacao/Captura.png" height="400" alt="img aplicação em execução"/>
 
 ## Bibliotecas Utilizadas
 logback: Ferramenta de registro (logging) em Java, utilizada para gerar logs de maneira flexível e eficiente.

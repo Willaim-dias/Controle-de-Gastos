@@ -69,7 +69,7 @@ public class SpendingHistoryViewController implements Initializable {
 
             Date date = new Date();
 
-            CreatePdf.createHistory(obj, value, date, url);
+            CreatePdf.createHistoryExtract(obj, value, date, url);
         } else {
             Alerts.showAlert("Info", "", "Selecione uma Linha", Alert.AlertType.INFORMATION);
         }
